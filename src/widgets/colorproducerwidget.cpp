@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2019 Meltytech, LLC
+ * Copyright (c) 2012-2020 Meltytech, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ ColorProducerWidget::ColorProducerWidget(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->colorLabel->setText(kTransparent);
-    Util::setColorsToHighlight(ui->label_2);
+    Util::setColorsToHighlight(ui->lineEdit, QPalette::Base);
     ui->preset->saveDefaultPreset(getPreset());
     ui->preset->loadPresets();
 }

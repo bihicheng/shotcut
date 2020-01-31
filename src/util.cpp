@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2019 Meltytech, LLC
+ * Copyright (c) 2014-2020 Meltytech, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@
 #include <QMap>
 #include <QDoubleSpinBox>
 #include <QTemporaryFile>
-#include <QCoreApplication>
+#include <QApplication>
 
 #include <MltProducer.h>
 #include <Logger.h>
@@ -47,10 +47,14 @@ QString Util::baseName(const QString &filePath)
 
 void Util::setColorsToHighlight(QWidget* widget, QPalette::ColorRole role)
 {
-    QPalette palette = widget->palette();
+    QPalette palette = QApplication::palette();
     palette.setColor(role, palette.color(palette.Highlight));
     palette.setColor(role == QPalette::Button ? QPalette::ButtonText : QPalette::WindowText,
         palette.color(palette.HighlightedText));
+    if (role == QPalette::Base) {
+        palette.setColor(QPalette::Highlight, palette.color(palette.AlternateBase));
+        palette.setColor(QPalette::HighlightedText, palette.color(palette.Text));
+    }
     widget->setPalette(palette);
     widget->setAutoFillBackground(true);
 }
